@@ -1,0 +1,40 @@
+     <!--    google family in a class
+    .gf{
+  font-family: "Trirong", serif;
+}-->
+
+nav {
+        background:#009000;
+        height:50px;
+
+    }
+    nav ul{
+         height:50px;
+         width:300px
+         margin:0 auto;
+         align-items:center;
+         display:flex;
+         justify-content:center;
+         padding:0 1rem;
+    }
+  nav ul li{
+         text-decoration:none;
+         font-size:35px;
+         margin:500;
+         boarder:10px;
+         padding: 10px 17px 10px 12px;
+         text-align:center;
+         display:flex;
+         height:100%;
+         overflow :hidden;
+  }
+ li a{
+         text-decoration:none;
+         line-height:50px;
+         display:block;
+ }
+li a:hover{
+         background-color:orange;
+         color:black;
+ }
+  </style>
