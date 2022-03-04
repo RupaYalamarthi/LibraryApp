@@ -1,44 +1,44 @@
 <jsp:include page="../include/header1.jsp" />
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<div class="container" >
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">BookName</th>
+      <th scope="col">Description</th>
+      <th scope="col">Author</th>
+      <th scope="col">Publisher</th>
+    <%--  <th scope="col">BookType</th>--%>
+      <th scope="col">URL</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
 
-<%--<form method="GET" action="/book/bookListAll" >
-</form>--%>
-
-   <table border="1">
-     <tr>
-          <td><b>BookName</b></td>
-          <td><b>Description</b></td>
-          <td><b>Author</b></td>
-          <td><b>Publisher</b></td>
-      <%--    <td><b>BookType</b></td>--%>
-          <td><b>URL</b></td>
-          <td><b>Edit</b></td>
-          <td><b>Delete</b></td>
-     </tr>
-   <c:forEach items = "${editBookFormBeanKey}" var="book">
-      <tr>
-           <td>${book.bookName}</td>
-           <td>${book.description}</td>
-           <td>${book.author}</td>
-           <td>${book.publisher}</td>
-        <%--   <td>${book.bookType}</td>--%>
-           <td>${book.url}</td>
-
-
-
+    </tr>
+  </thead>
+  <tbody>
+  <c:forEach items = "${editBookFormBeanKey}" var="book">
+    <tr>
+       <td>${book.bookName}</td>
+       <td>${book.description}</b></td>
+       <td>${book.author}</b></td>
+       <td>${book.publisher}</b></td>
+       <%--   <td>${book.bookType}</td> --%>
+       <td><b>${book.url}</td>
        <td><a href = "/editBook?id=${book.id}">Edit</td>
-           <td><a href = "/deleteBook?id=${book.id}">Delete</td>
+       <td><a href = "/deleteBook?id=${book.id}">Delete</td>
 
-      </tr>
+    </tr>
 </c:forEach>
+ </tbody>
 </table>
+</div>
 <style>
-td
-{
- max-width: 300px;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
-}
+   td
+    {
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 </style>
 <jsp:include page="../include/footer.jsp" />

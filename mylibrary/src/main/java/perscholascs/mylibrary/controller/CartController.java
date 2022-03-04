@@ -133,19 +133,21 @@ public class CartController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         User user = userDao.findByUserName(currentPrincipalName);
-        if(user.getId()!=null){
+        if(user.getId()!=null) {
             Checkout checkout = checkOutDao.findByUserIdAndStatus(user.getId(), "cart");
-        // System.out.println("checkout details" +checkout);
-        if (checkout != null) {
+            // System.out.println("checkout details" +checkout);
+            if (checkout != null) {
 
-            List<Transaction> transactions = transactionDao.findByCheckout(checkout);
-           // System.out.println("Transactions"+ transactions);
-            response.addObject("transactionKey", transactions);
-            response.setViewName("/cart/cartReady");}
-        }
-        else {
-            System.out.println("Your Cart is empty");
-            response.setViewName("/cart/cartEmpty");
+                List<Transaction> transactions = transactionDao.findByCheckout(checkout);
+                // System.out.println("Transactions"+ transactions);
+                response.addObject("transactionKey", transactions);
+                response.setViewName("/cart/cartReady");
+            }
+            // }
+            else {
+                System.out.println("Your Cart is empty");
+                response.setViewName("/cart/cartEmpty");
+            }
         }
 
         return response;
@@ -158,13 +160,14 @@ public class CartController {
         String currentPrincipalName = authentication.getName();
         User user = userDao.findByUserName(currentPrincipalName);
         Checkout checkout = checkOutDao.findByUserIdAndStatus(user.getId(),"cart");
-        System.out.println(checkout);
+        //System.out.println(checkout);
+        if(checkout!=null){
         List<Transaction> transactions = transactionDao.findByCheckout(checkout);
 //for loop go to each book change the status of the book to available.
       //  after the loop change the status of checkout and upadate the dates...
+
         for(Transaction transaction : transactions){
             Book book = transaction.getBook();
-
             System.out.println(book);
             book.setStatus("NotAvailable");
         }
@@ -176,7 +179,11 @@ public class CartController {
             Date returnDate = c.getTime();
             checkout.setDueDate(returnDate);
             checkOutDao.save(checkout);
-        response.setViewName("/cart/transaction");
+        response.setViewName("/cart/transaction");}
+    else {
+        System.out.println("Your Cart is empty");
+        response.setViewName("/cart/cartEmpty");
+    }
         return response;
 
     }
@@ -185,13 +192,15 @@ public class CartController {
         ModelAndView response = new ModelAndView();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
+
         User user = userDao.findByUserName(currentPrincipalName);
         Checkout checkout = checkOutDao.findByUserIdAndStatus(user.getId(),"cart");
         Transaction transaction = transactionDao.findByBookIdAndCheckoutId(bookId,checkout.getId());
-        System.out.println(transaction);
-       transactionDao.delete(transaction);
+       // System.out.println(checkout);
+       // System.out.println(transaction);
+        transactionDao.delete(transaction);
         checkOutDao.delete(checkout);
-        System.out.println(checkout);
+
         response.setViewName("/cart/cartReady");
 
         return response;

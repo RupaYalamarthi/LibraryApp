@@ -2,34 +2,56 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 
-<p align="center">Please fill the fields on this form and click submit to register. Your online registration will be forwarded to the Library.</p>
+<p align="center"><b>Please fill the fields on this form and click submit to register. Your online registration will be forwarded to the Library.</b></p>
 <br>
 <br>
 <form method="POST" action="/registerSubmit">
-<div align="center">
+<div class="container">
 <input type="hidden" name="id" value="${formBeanKey.id}">
-<table cellpadding="5">
-<tr><td>FirstName</td>
-        <td><input type="text" name ="firstName" value="${formBeanKey.firstName}"></td></tr>
-<tr><td>LastName</td>
-        <td><input type="text" name ="lastName" value="${formBeanKey.lastName}"></td></tr>
-<tr><td>Email</td>
-        <td><input type="text" name ="email" value="${formBeanKey.email}"></td></tr>
-<tr><td>PhoneNumber</td>
-        <td> <input type="text" name ="phoneNo" value="${formBeanKey.phoneNo}"></td></tr>
-<tr><td>DateOfBirth</td>
-        <td> <input type="date" name ="dob" value="${formBeanKey.dob}"></td></tr>
-<tr><td>Address</td>
-        <td> <input type="text" name ="address" value="${formBeanKey.address}"></td></tr>
-<tr><td>Username</td>
-        <td><input type="text" name ="userName" value="${formBeanKey.userName}"></td></tr>
-<tr><td>Password</td>
-         <td><input type="password" name ="password" value="${formBeanKey.password}"></td></tr>
-<tr><td>ConfirmPassword</td>
-         <td> <input type="password" name ="confirmPassword" value="${formBeanKey.confirmPassword}"></td></tr>
-<%--<tr><td><button type="submit" >Submit </button></td></tr>--%>
-</table>
-<tr><td align="center"><button type="submit" class="btn btn-primary" role="button">Submit</button>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label >FirstName</label>
+      <input type="text" class="form-control" name ="firstName"  placeholder="First name" value="${formBeanKey.firstName}">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label >LastName</label>
+      <input type="text" class="form-control" name ="lastName"  placeholder="Last name" value="${formBeanKey.lastName}" >
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label>Email</label>
+          <input type="text" class="form-control" name ="email" placeholder="Email" value="${formBeanKey.email}" >
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+       <label>PhoneNumber</label>
+           <input type="text" class="form-control" name ="phoneNo" placeholder="PhoneNumber" value="${formBeanKey.phoneNo}" >
+    </div>
+    <div class="col-md-3 mb-3">
+           <label>DateOfBirth</label>
+               <input type="date" class="form-control" name ="dob" placeholder="DateOfBirth" value="${formBeanKey.dob}" >
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Address</label>
+      <input type="text" class="form-control" name ="address" placeholder="Address" value="${formBeanKey.address}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>Username</label>
+      <input type="text" class="form-control" name ="userName" placeholder="Username" value="${formBeanKey.userName}">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label >Password</label>
+      <input type="password" class="form-control" name ="password" placeholder="Password" value="${formBeanKey.password}">
+    </div>
+    <div class="col-md-4 mb-3">
+          <label >ConfirmPassword</label>
+          <input type="password" class="form-control" name ="confirmPassword" placeholder="ConfirmPassword" value="${formBeanKey.confirmPassword}">
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </div>
 </form>
 <div>
@@ -37,5 +59,4 @@
         <span style="color:red">${message}</span><br>
     </c:forEach>
 </div>
-
 

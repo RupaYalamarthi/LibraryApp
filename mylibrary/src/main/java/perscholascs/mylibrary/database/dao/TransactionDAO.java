@@ -12,7 +12,7 @@ import java.util.List;
 public interface TransactionDAO extends JpaRepository<Transaction,Long> {
     public Transaction  findByBookIdAndCheckoutId(@Param("book_id") Integer bookId, @Param("chekout_id") Integer checkOutId) ;
     public List<Transaction> findByCheckout(@Param("chekout_id") Checkout checkout) ;
-    public Transaction findById(Integer id);
-    public Book  findByBookId(@Param("book_id") Integer bookId);
+
+    public Transaction  findByBookId(@Param("book_id") Integer bookId);
 
 }
