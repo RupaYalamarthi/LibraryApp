@@ -62,10 +62,11 @@ public class UserController {
     public ModelAndView registerEditPage(@RequestParam(required = false) Integer id ) throws ParseException {
         ModelAndView response = new ModelAndView();
      //  response.setViewName("registration/register");
-       response.setViewName("/user/userListAll");
+       response.setViewName("/user/editUser");
        if (id != null) {
             // id has been passed to this form so it is an edit
             User user = userDao.findById(id);
+           System.out.println(user);
             // populate the form bean with the data loaded from the database
             RegisterFormBean form = new RegisterFormBean();
             form.setEmail(user.getEmail());

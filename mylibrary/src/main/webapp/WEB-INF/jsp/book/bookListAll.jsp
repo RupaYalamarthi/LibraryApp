@@ -8,7 +8,7 @@
       <th scope="col">Description</th>
       <th scope="col">Author</th>
       <th scope="col">Publisher</th>
-    <%--  <th scope="col">BookType</th>--%>
+    <th scope="col">BookType</th>
       <th scope="col">URL</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
@@ -22,7 +22,7 @@
        <td>${book.description}</b></td>
        <td>${book.author}</b></td>
        <td>${book.publisher}</b></td>
-       <%--   <td>${book.bookType}</td> --%>
+       <td>${book.bookType}</td>
        <td><b>${book.url}</td>
        <td><a href = "/editBook?id=${book.id}">Edit</td>
        <td><a href = "/deleteBook?id=${book.id}">Delete</td>

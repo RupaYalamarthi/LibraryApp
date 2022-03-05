@@ -82,6 +82,7 @@ public class BookController {
         book.setDescription(form1.getDescription());
         book.setAuthor(form1.getAuthor());
         book.setPublisher(form1.getPublisher());
+        book.setBookType(form1.getBookType());
         book.setUrl(form1.getUrl());
         book = bookDao.save(book);}
         response.setViewName("book/addBook");

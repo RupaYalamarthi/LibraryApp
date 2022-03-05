@@ -1,28 +1,40 @@
 <jsp:include page="../include/header1.jsp" />
-
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <form method="POST" action="/addBookSubmit">
-<div align="center">
+<div class="container">
 <input type="hidden" name="id" value="${editBookFormBeanKey.id}">
-<table cellpadding="5">
-<tr><td>BookName</td>
-        <td><input type="text" name ="bookName" value="${editBookFormBeanKey.bookName}"></td></tr>
-<tr><td>Description</td>
-        <td><input type="text" name ="description" value="${editBookFormBeanKey.description}"></td></tr>
-<tr><td>Author</td>
-        <td><input type="text" name ="author" value="${editBookFormBeanKey.author}"></td></tr>
-<tr><td>Publisher</td>
-        <td> <input type="text" name ="publisher" value="${editBookFormBeanKey.publisher}"></td></tr>
-<%--<tr><td>BookType</td>
-        <td> <input type="text" name ="bookType" value="${editBookFormBeanKey.bookType}"></td></tr>--%>
-<tr><td>Url</td>
-        <td><input type="text" name ="url" value="${editBookFormBeanKey.url}"></td></tr>
-<%--<tr><td><button type="submit" >Submit </button></td></tr>--%>
-</table>
-<tr><td align="center"><button type="submit" class="btn btn-primary" role="button">Submit</button>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label>BookName</label>
+      <input type="text" class="form-control" name ="bookName"  placeholder="BookName" value="${editBookFormBeanKey.bookName}">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Description</label>
+      <input type="text" class="form-control" name ="description"  placeholder="Description" value="${editBookFormBeanKey.author}" >
+    </div>
 
-</div>
+    <div class="col-md-4 mb-3">
+      <label>Author</label>
+          <input type="text" class="form-control" name ="author" placeholder="Author" value="${editBookFormBeanKey.author}" >
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+       <label>Publisher</label>
+           <input type="text" class="form-control" name ="publisher" placeholder="Publisher" value="${editBookFormBeanKey.publisher}" >
+    </div>
+  <div class="col-md-3 mb-3">
+           <label>BookType</label>
+               <input type="text" class="form-control" name ="bookType" placeholder="BookType" value="${editBookFormBeanKey.bookType}" >
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Url</label>
+      <input type="text" class="form-control" name ="url" placeholder="Url" value="${editBookFormBeanKey.url}">
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+ </div>
 </form>
 <div>
   <c:forEach items="${editBookFormBeanKey.errorMessages}" var="message">
