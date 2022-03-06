@@ -14,5 +14,7 @@ public interface BookDAO extends JpaRepository<Book, Long> {
     @Query(value="Select * from books where status <> 'checkedout'",nativeQuery = true)
     List<Book>  displayAvailablebooks();
     public Book findByBookName(String bname);
+    public Book findByAuthor(String author);
+
 
 }

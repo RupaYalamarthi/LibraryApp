@@ -11,15 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import perscholascs.mylibrary.database.dao.BookDAO;
 import perscholascs.mylibrary.database.entity.Book;
-
-import perscholascs.mylibrary.database.entity.User;
-import perscholascs.mylibrary.database.entity.UserRole;
 import perscholascs.mylibrary.form.EditBooksFormBean;
-import perscholascs.mylibrary.form.RegisterFormBean;
-
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -62,11 +55,14 @@ public class BookController {
     public ModelAndView addBookSubmit(@Valid EditBooksFormBean form1, BindingResult errors) throws Exception {
         ModelAndView response = new ModelAndView();
         //        System.out.println(form);
+
+
        if (errors.hasErrors()) {
             for (FieldError error : errors.getFieldErrors()) {
                 form1.getErrorMessages().add(error.getDefaultMessage());
                 System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
             }
+
             response.addObject("editBookFormBeanKey", form1);
             response.setViewName("book/addBook");
         }
