@@ -1,4 +1,4 @@
-Full stack Java Application()
+Full stack Java Application(Library)
 Rep Link:  https://github.com/RupaYalamarthi/LibraryApp.git 
 
 The basic Library Application for my final case study.
