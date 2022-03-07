@@ -13,9 +13,7 @@
              </div>
           </div>
         </div>
-
-
-        <div class="card">
+      <div class="card">
           <div class="card-body">
             <a href="/bookListAll"button type="button" class="btn btn-warning btn-block btn-lg">Return to Book List</button></a>
           </div>
