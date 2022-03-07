@@ -3,26 +3,25 @@
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-10">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-        </div>
+
       <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-7 col-lg-7 col-xl-7"  >
-                <p><h2>You have checked out your books Successfully..</h2> </p>
+                <p><h2>Sorry you can not delete,Some one checked out this book already..</h2> </p>
               </div>
              </div>
           </div>
-      </div>
-      <div class="card">
-                <div class="card-body">
-                  <a href="/"button type="button" class="btn btn-warning btn-block btn-lg">Start Searching again..</button></a>
-                </div>
-              </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-body">
+            <a href="/bookListAll"button type="button" class="btn btn-warning btn-block btn-lg">Return to Book List</button></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<jsp:include page="../include/footer.jsp" />
-
 

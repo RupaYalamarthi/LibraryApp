@@ -24,9 +24,8 @@
        <td>${book.publisher}</b></td>
        <td>${book.bookType}</td>
        <td><b>${book.url}</td>
-       <td><a href = "/editBook?id=${book.id}">Edit</td>
-       <td><a href = "/deleteBook?id=${book.id}">Delete</td>
-
+       <td><a href = "/editBook?id=${book.id}" button class="btn btn-primary " >Edit</button></td>
+       <td><a href = "/deleteBook?id=${book.id}" button class="btn btn-danger" type="submit">Delete</button></td>
     </tr>
 </c:forEach>
  </tbody>

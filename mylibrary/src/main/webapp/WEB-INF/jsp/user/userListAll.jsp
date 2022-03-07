@@ -28,9 +28,11 @@
       <td>${user.dob}</td>
       <td><b>${user.address}</td>
       <td><b>${user.userName}</td>
+      <td><a href = "/editUser?id=${user.id}" button class="btn btn-primary " >Edit</button></td>
+
     <%--  <td><a href = "/register?id=${user.id}">Edit</td>
-      <td><a href = "/deleteUser?id=${user.id}">Delete</td>--%>
-            <td><a href = "/editUser?id=${user.id}">Edit</td>
+      <td><a href = "/deleteUser?id=${user.id}">Delete</td>
+            <td><a href = "/editUser?id=${user.id}">Edit</td>--%>
 
     </tr>
   </c:forEach>

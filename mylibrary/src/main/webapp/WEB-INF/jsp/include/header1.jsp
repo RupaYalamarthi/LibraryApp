@@ -41,9 +41,9 @@
                 <a class="nav-link" href="/login/login">LogIn/Register<span class="sr-only">(current)</span></a>
               </li>
               </sec:authorize>
-              <li class="nav-item active">
+           <%--   <li class="nav-item active">
                 <a class="nav-link "  href="/communityPrograms">CommunityPrograms</a>
-              </li>
+              </li>--%>
               <li class="nav-item active">
                 <a class="nav-link" href="/locations&hours">Location&Hours</a>
               </li>

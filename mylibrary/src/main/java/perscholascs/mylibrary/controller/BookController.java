@@ -80,8 +80,11 @@ public class BookController {
         book.setPublisher(form1.getPublisher());
         book.setBookType(form1.getBookType());
         book.setUrl(form1.getUrl());
+        book.setStatus("Available");
         book = bookDao.save(book);}
-        response.setViewName("book/addBook");
+     //   response.setViewName("book/addBook");
+        response.setViewName("redirect:/bookListAll");
+
         return response;
     }
 
@@ -105,6 +108,8 @@ public class BookController {
             response.addObject("editBookFormBeanKey", form1);
         }
         // response.setViewName("book/editBook");
+       // response.setViewName("redirect:/bookListAll");
+
         return response;
     }
     @RequestMapping(value = "/bookListAll", method = RequestMethod.GET)
@@ -123,9 +128,18 @@ public class BookController {
         ModelAndView response = new ModelAndView();
         response.setViewName("redirect:/bookListAll");
 
-        Book delete = bookDao.findById(id);
-        if( delete!=null){
-            bookDao.delete(delete);
+        Book book = bookDao.findById(id);
+
+        if( book!=null){
+            if((book.getStatus()).equals("NotAvailable")){
+                response.setViewName("/book/bookCheckedOut");
+            }
+            else if((book.getStatus()).equals("hold")){
+                response.setViewName("/book/bookInCart");
+            }
+            else{
+            bookDao.delete(book);}
+
         }
         return response;
     }

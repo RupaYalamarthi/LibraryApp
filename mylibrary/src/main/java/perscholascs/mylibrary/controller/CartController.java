@@ -71,6 +71,7 @@ public class CartController {
             checkOutDao.save(checkout);
             Transaction transaction1 = new Transaction();
             transaction1.setBook(book);
+            book.setStatus("hold");
             transaction1.setCheckout(checkout);
             transactionDao.save(transaction1);
             response.setViewName("redirect:/index");
@@ -81,6 +82,8 @@ public class CartController {
             if(transaction==null){
                 Transaction transaction1 = new Transaction();
                 transaction1.setBook(book);
+                book.setStatus("hold");
+
                 transaction1.setCheckout(checkout);
                 transactionDao.save(transaction1);
                 response.setViewName("redirect:/index");
@@ -192,14 +195,16 @@ public class CartController {
         ModelAndView response = new ModelAndView();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-
+        Book book = bookDao.findById(bookId);
         User user = userDao.findByUserName(currentPrincipalName);
         Checkout checkout = checkOutDao.findByUserIdAndStatus(user.getId(),"cart");
         Transaction transaction = transactionDao.findByBookIdAndCheckoutId(bookId,checkout.getId());
        // System.out.println(checkout);
        // System.out.println(transaction);
+        book.setStatus("Available");
         transactionDao.delete(transaction);
         checkOutDao.delete(checkout);
+        book.setStatus("Available");
 
         response.setViewName("/cart/cartReady");
 
