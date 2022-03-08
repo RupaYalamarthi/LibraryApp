@@ -51,7 +51,6 @@ public class RegistrationController {
         ModelAndView response = new ModelAndView();
         response.setViewName("registration/register");
         if (id != null) {
-            //id has been passed to this form so it is an edit
             User user = userDao.findById(id);
             RegisterFormBean form = new RegisterFormBean();
             form.setEmail(user.getEmail());
