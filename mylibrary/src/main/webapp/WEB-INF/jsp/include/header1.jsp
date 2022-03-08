@@ -9,7 +9,7 @@
     <Title>Troy Library</Title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
    <style type = "text/css">
-           <!--    google family in a class-->
+           <!--   google family in a class-->
            .gf{
          font-family: "Trirong", serif;
        }
@@ -25,6 +25,7 @@
 </head>
 
 <body style="background-color: lightblue;">
+
 <h1 align="center" style="color :black"> TROY LIBRARY</h1><br>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -84,7 +85,7 @@
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        <sec:authentication property="principal.username" />  Profile </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="/user/profile">Action</a>
                        <%-- <a class="dropdown-item" href="#">Another action</a>--%>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/login/logout">Logout</a>

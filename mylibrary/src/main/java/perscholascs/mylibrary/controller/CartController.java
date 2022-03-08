@@ -34,23 +34,7 @@ public class CartController {
     @Autowired
     private TransactionDAO transactionDao;
 
-    // for adding an item to an order
-    // 0) on your jsp page when a user adds an item to the cart you will pass the product id
-    // 1) query your product by the productId
-    // 1.1)  get the user record for the logged-in user with getLoggedInUser function
-    // 2) query your oder by the user_id and status cart ( this gets the most recent order for the logged-in user)
-    // 3) if the order does not exist ( id of the query response is null )
-    //      3a) create the order with status cart
-    //      3c) add the user object to the order
-    // 4) query the order_products table to see if the product is already in the order
-    //query the Transactions table to see if the book is already in the checkout
-    // 5) if the product is not in the order
-    //      5a ) create a new order_product entity
-    //      5b ) set the product id on the order_product
-    //      5c ) set the order id on the order_product
-    // 6) if the product is already in the order
-    //      6a ) increment the quantity on the order_product
-    // 7) persist the order_product
+
 
     @RequestMapping(value = "{bookId}/addToCart", method = RequestMethod.GET)
     // @RequestMapping(value = "/addToCart?id=${book.id}", method = RequestMethod.GET)
@@ -93,33 +77,6 @@ public class CartController {
             response.setViewName("/cart/bookPresentCart");}
         }
 
-//            Transaction transaction1 = new Transaction();
-//            transaction1.setBook(book);
-//            transaction1.setCheckout(checkout);
-//            transactionDao.save(transaction1);
-
-
-//        response.setViewName("redirect:/index");
-        //}
-        //System.out.println("userid is" + user.getId());
-        //   Checkout checkout = CheckOutDAO.findByUserIdAndStatus(user.getId(),"cart");
-//        Checkout checkout = checkOutDao.findByUserAndStatus(user, "cart");
-//        if (checkout == null) {
-//            checkout = new Checkout();
-//            checkout.setStatus("cart");
-//            checkout.setUser(user);
-//            checkOutDao.save(checkout);
-//        //}
-//        //query the Transactions table to see if the book is already in the checkout
-//        //   Transaction transaction = new Transaction();
-//
-//        Transaction transaction1 = new Transaction();
-//        transaction1.setBook(book);
-//        transaction1.setCheckout(checkout);
-//        transactionDao.save(transaction1);
-//
-//
-//        response.setViewName("redirect:/index");}
 
         return response;
     }
@@ -198,15 +155,16 @@ public class CartController {
         Book book = bookDao.findById(bookId);
         User user = userDao.findByUserName(currentPrincipalName);
         Checkout checkout = checkOutDao.findByUserIdAndStatus(user.getId(),"cart");
+      //  List<Transaction> transactions= transactionDao.findByCheckout(checkout);
+        if(checkout!=null){
         Transaction transaction = transactionDao.findByBookIdAndCheckoutId(bookId,checkout.getId());
        // System.out.println(checkout);
        // System.out.println(transaction);
         book.setStatus("Available");
         transactionDao.delete(transaction);
-        checkOutDao.delete(checkout);
-        book.setStatus("Available");
-
-        response.setViewName("/cart/cartReady");
+        //checkOutDao.delete(checkout);
+        }
+        response.setViewName("redirect:/cartReady");
 
         return response;
     }

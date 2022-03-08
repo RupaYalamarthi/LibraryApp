@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import perscholascs.mylibrary.database.dao.UserDAO;
-import perscholascs.mylibrary.database.dao.UserRoleDAO;
+import perscholascs.mylibrary.database.dao.*;
 import perscholascs.mylibrary.database.entity.Book;
+import perscholascs.mylibrary.database.entity.Transaction;
 import perscholascs.mylibrary.database.entity.User;
 import perscholascs.mylibrary.database.entity.UserRole;
 import perscholascs.mylibrary.form.RegisterFormBean;
@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -35,6 +36,12 @@ public class UserController {
     private UserRoleDAO userRoleDao;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private TransactionDAO transactionDao;
+    @Autowired
+    private BookDAO bookDao;
+    @Autowired
+    private CheckOutDAO checkOutDAO;
 
 
     @RequestMapping(value = "/user/profile", method = RequestMethod.GET)
@@ -42,7 +49,11 @@ public class UserController {
         ModelAndView response = new ModelAndView();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        response.addObject("username", currentPrincipalName);
+       // response.addObject("username", currentPrincipalName);
+        User user= userDao.findByUserName(currentPrincipalName);
+        Integer id = user.getId();
+        List<Map<String,Object>> listOfBooks = checkOutDAO.checkedOutBooksByUser(id);
+        response.addObject("listOfBooksKey",listOfBooks);
         response.setViewName("/user/profile");
 
         return response;
@@ -103,4 +114,6 @@ public class UserController {
         }
         return response;
     }
+
+
 }

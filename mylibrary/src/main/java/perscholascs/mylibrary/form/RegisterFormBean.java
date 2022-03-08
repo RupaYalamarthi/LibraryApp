@@ -16,24 +16,25 @@ import java.util.List;
 @Setter
 @TwoFieldsAreEqual(fieldOneName = "confirmPassword", fieldTwoName = "password", message = "Password and Conform Password must be the same.")
 public class RegisterFormBean {
-    public Integer id;
+    private Integer id;
+
     @NotEmpty(message = "Email is required")
     @Pattern(regexp = "^.+@.+$", message="Please provide a valid E-mail format")
     @EmailUnique(message = "Email must be Unique")
-    public String email;
+    private String email;
 
     @NotEmpty(message = "FirstName is required")
     //@Length(min = 1, max = 50, message = "First Name must be between 1 and 45 character in length.")
-    public String firstName;
+    private String firstName;
 
     @NotEmpty(message = "LastName is required")
-    public String lastName;
+    private String lastName;
 
     @NotEmpty(message = "UserName is required")
     private String userName;
 
-    public String password;
-    public String confirmPassword;
+    private String password;
+    private String confirmPassword;
 
     @NotEmpty(message = "PhoneNumber is required")
     public String phoneNo;

@@ -83,9 +83,15 @@ public class RegistrationController {
 //              System.out.println(form);
         if (errors.hasErrors()) {
             List<String> errorMessages = new ArrayList<>();
-            for (FieldError error : errors.getFieldErrors()) {
-                errorMessages.add(error.getDefaultMessage());
+//            for (FieldError error : errors.getFieldErrors()) {
+//                errorMessages.add(error.getDefaultMessage());
+//                LOG.debug("error field = " + error.getField() + " message = " + error.getDefaultMessage());
+//            }
+            if(errors.hasErrors()){
+                errors.getFieldErrors().forEach(error -> {
+                    errorMessages.add(error.getDefaultMessage());
                 LOG.debug("error field = " + error.getField() + " message = " + error.getDefaultMessage());
+                });
             }
             response.addObject("errorMessages", errorMessages);
             response.addObject("formBeanKey", form);
@@ -119,7 +125,8 @@ public class RegistrationController {
                     ur.setUserRole("USER");
                     userRoleDao.save(ur);
                 }
-                response.setViewName("registration/register");
+//                response.setViewName("registration/register");
+             response.setViewName("redirect:/index");
         }
         return response;
         }

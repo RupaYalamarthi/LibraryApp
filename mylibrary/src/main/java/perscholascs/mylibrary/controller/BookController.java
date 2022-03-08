@@ -138,7 +138,8 @@ public class BookController {
                 response.setViewName("/book/bookInCart");
             }
             else{
-            bookDao.delete(book);}
+            bookDao.delete(book);
+            }
 
         }
         return response;
