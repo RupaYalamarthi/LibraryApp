@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,10 +20,13 @@ import perscholascs.mylibrary.database.entity.Transaction;
 import perscholascs.mylibrary.database.entity.User;
 import perscholascs.mylibrary.database.entity.UserRole;
 import perscholascs.mylibrary.form.RegisterFormBean;
+import perscholascs.mylibrary.form.UserEditFormBean;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -79,27 +84,76 @@ public class UserController {
             User user = userDao.findById(id);
            System.out.println(user);
             // populate the form bean with the data loaded from the database
-            RegisterFormBean form = new RegisterFormBean();
-            form.setEmail(user.getEmail());
+            UserEditFormBean form = new UserEditFormBean();
+           form.setEmail(user.getEmail());
             form.setFirstName(user.getFirstName());
             form.setLastName(user.getLastName());
             form.setUserName(user.getUserName());
-            form.setPassword(user.getPassword());
+          form.setPassword(user.getPassword());
             SimpleDateFormat formatte = new SimpleDateFormat("yyyy-MM-dd");
             // Date date = formatter.parse(user.getDob());
             String strDate = formatte.format(user.getDob());
             form.setDob(strDate);
-            form.setConfirmPassword(user.getPassword());
+           form.setConfirmPassword(user.getPassword());
             // since we loaded this from the database we know the id field
             form.setId(user.getId());
             form.setAddress(user.getAddress());
             form.setPhoneNo(user.getPhoneNo());
-
             response.addObject("formBeanKey", form);
 
         }
             return response;
         }
+
+    @RequestMapping(value = "/userEditSubmit", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView userEditSubmit(@Valid RegisterFormBean form, BindingResult errors) throws Exception {
+        ModelAndView response = new ModelAndView();
+//              System.out.println(form);
+        if (errors.hasErrors()) {
+            List<String> errorMessages = new ArrayList<>();
+            for (FieldError error : errors.getFieldErrors()) {
+                errorMessages.add(error.getDefaultMessage());
+                System.out.println("error field = " + error.getField() + " message = " + error.getDefaultMessage());
+            }
+            response.addObject("errorMessages", errorMessages);
+            response.addObject("formBeanKey", form);
+         //   response.setViewName("registration/register");
+        } else {
+//            User user;
+//            if (form.getId() == null) {
+//                user = new User();
+//            }
+//            else {
+            User user = userDao.findById(form.getId());
+//            }
+            user.setFirstName(form.getFirstName());
+            user.setLastName(form.getLastName());
+            user.setUserName(form.getUserName());
+            user.setEmail(user.getEmail());
+            user.setPassword(user.getPassword());
+            user.setConfirmPassword(user.getConfirmPassword());
+            user.setPhoneNo(form.getPhoneNo());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = formatter.parse(form.getDob());
+            user.setDob(date);
+            user.setAddress(form.getAddress());
+            //Encrypting the user password entering from form
+//            String encryptedPassword = passwordEncoder.encode(form.getPassword())  ;
+//            user.setPassword(encryptedPassword);
+            user = userDao.save(user);
+//            if (form.getId() == null) {
+//                UserRole ur = new UserRole();
+//                ur.setUser(user);
+//                ur.setUserRole("USER");
+//                userRoleDao.save(ur);
+//            }
+//                response.setViewName("registration/register");
+            response.setViewName("redirect:/userListAll");
+        }
+        return response;
+    }
+
+
 
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)

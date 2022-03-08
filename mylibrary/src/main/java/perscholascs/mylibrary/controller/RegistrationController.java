@@ -125,7 +125,7 @@ public class RegistrationController {
                     userRoleDao.save(ur);
                 }
 //                response.setViewName("registration/register");
-             response.setViewName("redirect:/index");
+             response.setViewName("redirect:/userListAll");
         }
         return response;
         }

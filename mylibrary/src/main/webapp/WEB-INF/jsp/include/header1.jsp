@@ -34,9 +34,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
+             <sec:authorize access="hasAnyAuthority('ADMIN', 'USER')">
             <li class="nav-item active">
                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
             </li>
+            </sec:authorize>
             <sec:authorize access="!isAuthenticated()">
               <li class="nav-item active">
                 <a class="nav-link" href="/login/login">LogIn/Register<span class="sr-only">(current)</span></a>
@@ -72,7 +74,7 @@
                           <sec:authentication property="principal.username" />  Admin Home </a>
                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/register">UserRegistration</a>
-                                <a class="dropdown-item" href="/userListAll">EditUser</a>
+                             <%--   <a class="dropdown-item" href="/userListAll">EditUser</a>--%>
                                 <a class="dropdown-item" href="/addBook">AddABook</a>
                                 <a class="dropdown-item" href="/bookListAll">Edit/Delete Book</a>
 
@@ -83,9 +85,9 @@
               <sec:authorize access="hasAnyAuthority('ADMIN', 'USER')">
               <li class="nav-item dropdown active">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       <sec:authentication property="principal.username" />  Profile </a>
+                       <sec:authentication property="principal.username" />Profile</a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/user/profile">Action</a>
+                        <a class="dropdown-item" href="/user/profile">Transactions</a>
                        <%-- <a class="dropdown-item" href="#">Another action</a>--%>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/login/logout">Logout</a>

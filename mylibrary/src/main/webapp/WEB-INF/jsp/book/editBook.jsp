@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-4 mb-3">
       <label>Description</label>
-      <input type="text" class="form-control" name ="description"  placeholder="Description" value="${editBookFormBeanKey.author}" >
+      <input type="text" class="form-control" name ="description"  placeholder="Description" value="${editBookFormBeanKey.description}" >
     </div>
 
     <div class="col-md-4 mb-3">
