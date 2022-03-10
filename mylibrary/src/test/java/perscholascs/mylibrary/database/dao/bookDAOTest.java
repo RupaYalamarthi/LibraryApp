@@ -60,7 +60,7 @@ public class bookDAOTest  {
     @Test
     public void testFindById()
     {
-        Book book = bookDAO.findById(2);
+        Book book = bookDAO.findById(76);
         Assertions.assertEquals("The paper Palace", book.getBookName());
         Assertions.assertEquals("Fiction", book.getBookType());
         Assertions.assertEquals("/pub/images/PaperPalace.jfif", book.getUrl());
@@ -70,3 +70,4 @@ public class bookDAOTest  {
     }
 
 }
+

@@ -8,7 +8,9 @@
 <p align="center"><b>Please fill the fields on this form and click submit to register. Your online registration will be forwarded to the Library.</b></p>
 <br>
 <br>
-<form method="POST" action="/registerSubmit">
+<%--<form method="POST" action="/registerSubmit">--%>
+<form method="POST" action="/userEditSubmit">
+
 <div class="container">
 <input type="hidden" name="id" value="${formBeanKey.id}">
   <div class="form-row">

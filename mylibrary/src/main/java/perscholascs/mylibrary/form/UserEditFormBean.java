@@ -21,7 +21,7 @@ public class UserEditFormBean {
 
     @NotEmpty(message = "Email is required")
     @Pattern(regexp = "^.+@.+$", message="Please provide a valid E-mail format")
-    @EmailUnique(message = "Email must be Unique")
+   // @EmailUnique(message = "Email must be Unique")
     private String email;
 
     @NotEmpty(message = "FirstName is required")

@@ -74,7 +74,7 @@
                           <sec:authentication property="principal.username" />  Admin Home </a>
                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/register">UserRegistration</a>
-                             <%--   <a class="dropdown-item" href="/userListAll">EditUser</a>--%>
+                            <%--   <a class="dropdown-item" href="/userListAll">EditUser</a>--%>
                                 <a class="dropdown-item" href="/addBook">AddABook</a>
                                 <a class="dropdown-item" href="/bookListAll">Edit/Delete Book</a>
 

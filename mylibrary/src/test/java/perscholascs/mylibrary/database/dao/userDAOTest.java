@@ -63,9 +63,9 @@ public class userDAOTest {
   //  @Rollback(false)
     public void testEditUser()
     {
-        User user = userDAO.findByUserName("qwe");
-        user.setFirstName("ErikV");
-        Assertions.assertEquals("ErikV",userDAO.findByUserName("qwe").getFirstName());
+        User user = userDAO.findByUserName("qaz");
+        user.setFirstName("qaz");
+        Assertions.assertEquals("qaz",userDAO.findByUserName("qaz").getFirstName());
     }
 
     @Test
